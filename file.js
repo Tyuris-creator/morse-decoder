@@ -37,11 +37,11 @@ const MORSE_TABLE = {
   '-----': '0',
 };
 
-module.exports = function decode(expr) {
+function decode(expr) {
   const encoded = expr.split('**********');
   let decodeStr = '';
   for (let i = 0; i < encoded.length; i += 1) {
-    const subStr = encoded[i].split('');
+    let subStr = encoded[i].split('');
     const timesToIterate = Math.floor(subStr.length / 10);
     for (let j = 0; j < timesToIterate; j += 1) {
       let letter = '';
@@ -67,4 +67,10 @@ module.exports = function decode(expr) {
     decodeStr += ' ';
   }
   return decodeStr.trim();
-};
+}
+
+console.log(
+  decode(
+    '0000101010000000101100101010110000000010**********00000011110000000010'
+  )
+);
